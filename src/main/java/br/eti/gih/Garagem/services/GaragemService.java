@@ -4,6 +4,7 @@
  */
 package br.eti.gih.Garagem.services;
 
+import br.eti.gih.Garagem.DTO.VeiculoDTO;
 import br.eti.gih.Garagem.entities.Veiculo;
 import br.eti.gih.Garagem.repositories.GaragemRepository;
 import java.util.List;
@@ -29,6 +30,15 @@ public class GaragemService {
     public List<Veiculo> findById(long id) {
         List<Veiculo> result = garagemRepository.findById(id);
         return result;
+    }
+    
+    public List<VeiculoDTO> findByCorIgnoreCase( String cor){
+        List<Veiculo> resultVeiculo = garagemRepository.findByCorIgnoreCase(cor);
+        
+        List<VeiculoDTO> resultDTO = resultVeiculo.stream()
+                .map(x -> new VeiculoDTO(x)).toList();
+        
+        return resultDTO;
     }
     
 }

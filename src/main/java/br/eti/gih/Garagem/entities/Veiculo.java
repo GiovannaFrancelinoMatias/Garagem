@@ -58,12 +58,12 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
-    public String getDor() {
+    public String getCor() {
         return cor;
     }
 
-    public void setDor(String dor) {
-        this.cor = dor;
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
     public int getAno() {
@@ -105,5 +105,6 @@ public class Veiculo {
     public void setAvarias(String avarias) {
         this.avarias = avarias;
     }
-    
+
+   
 }

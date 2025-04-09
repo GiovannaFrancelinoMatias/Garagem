@@ -4,11 +4,13 @@
  */
 package br.eti.gih.Garagem.controllers;
 
+import br.eti.gih.Garagem.DTO.VeiculoDTO;
 import br.eti.gih.Garagem.entities.Veiculo;
 import br.eti.gih.Garagem.services.GaragemService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +37,15 @@ public class GaragemController {
         return result;
     }
    
+    @GetMapping("/cor/{cor}")
+    public ResponseEntity<List<VeiculoDTO>> findByCorIgnoreCase(@PathVariable String cor){
+        
+        List<VeiculoDTO> result = garagemService.findByCorIgnoreCase(cor);
+        if (result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
     
 }
